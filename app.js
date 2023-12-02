@@ -3,7 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+// Export libraries
+var config = require('./config/globals')
 var mongoose = require('mongoose');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -22,6 +26,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+var authRouter = require('./routes/auth');
+app.use('/auth', authRouter);
+var privateRouter = require('./routes/private');
+app.use('/private', privateRouter);
+
+
+// Connect to MongoDB Atlas
+mongoose.connect(config.db, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Handle MongoDB Atlas connection errors
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB Atlas!');
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,18 +63,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-// Connect to MongoDB Atlas
-mongoose.connect('YOUR_MONGODB_ATLAS_CONNECTION_STRING', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-// Handle MongoDB Atlas connection errors
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB Atlas!');
-});
 
 
 module.exports = app;
