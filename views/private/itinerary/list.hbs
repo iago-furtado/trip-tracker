@@ -1,0 +1,16 @@
+<!-- views/private/itinerary/list.hbs -->
+
+<div class="container mt-5">
+  <h2>Your Itineraries</h2>
+
+  <!-- Display a list of itineraries -->
+  <ul>
+    {{#each itineraries}}
+      <li>
+        <a href="/itinerary/{{this.id}}">{{this.destination}}</a>
+        <p>Dates: {{this.dates}}</p>
+        <p>Activities: {{this.activities}}</p>
+      </li>
+    {{/each}}
+  </ul>
+</div>

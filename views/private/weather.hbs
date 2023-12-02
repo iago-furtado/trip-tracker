@@ -1,0 +1,15 @@
+<!-- views/private/weather.hbs -->
+
+<div class="container mt-5">
+  <h2>Weather Forecast</h2>
+
+  <!-- Display weather information for destinations in the itinerary -->
+  {{#each destinations}}
+    <div class="weather-card">
+      <h3>{{this.destination}}</h3>
+      <p>Temperature: {{this.temperature}} °C</p>
+      <p>Conditions: {{this.conditions}}</p>
+      <!-- Add more weather details as needed -->
+    </div>
+  {{/each}}
+</div>

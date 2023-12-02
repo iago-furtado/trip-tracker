@@ -1,0 +1,18 @@
+<!-- views/private/itinerary/edit.hbs -->
+
+<div class="container mt-5">
+  <h2>Edit Itinerary</h2>
+
+  <!-- Itinerary edit form -->
+  <form action="/itinerary/{{itinerary.id}}/edit" method="POST">
+    <!-- Populate the form fields with current itinerary details -->
+    <div class="form-group">
+      <label for="destination">Destination:</label>
+      <input type="text" class="form-control" id="destination" name="destination" value="{{itinerary.destination}}" required>
+    </div>
+
+    <!-- Add more fields as needed -->
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+</div>
