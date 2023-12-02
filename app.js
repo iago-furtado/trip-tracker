@@ -11,6 +11,8 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
+var privateRouter = require('./routes/private');
 
 var app = express();
 
@@ -24,13 +26,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Router config
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-var authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
-var privateRouter = require('./routes/private');
 app.use('/private', privateRouter);
-
 
 // Connect to MongoDB Atlas
 mongoose.connect(config.db, {

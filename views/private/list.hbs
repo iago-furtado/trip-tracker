@@ -1,4 +1,4 @@
-<!-- views/private/itinerary/list.hbs -->
+<!-- views/private/list.hbs -->
 
 <div class="container mt-5">
   <h2>Your Itineraries</h2>
@@ -7,7 +7,7 @@
   <ul>
     {{#each itineraries}}
       <li>
-        <a href="/itinerary/{{this.id}}">{{this.destination}}</a>
+        <a href="/{{this.id}}">{{this.destination}}</a>
         <p>Dates: {{this.dates}}</p>
         <p>Activities: {{this.activities}}</p>
       </li>

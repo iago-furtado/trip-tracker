@@ -1,10 +1,10 @@
 <!-- views/private/itinerary/edit.hbs -->
 
 <div class="container mt-5">
-  <h2>Edit Itinerary</h2>
+  <h2>{{tittle}}</h2>
 
   <!-- Itinerary edit form -->
-  <form action="/itinerary/{{itinerary.id}}/edit" method="POST">
+  <form action="/{{itinerary.id}}/edit" method="POST">
     <!-- Populate the form fields with current itinerary details -->
     <div class="form-group">
       <label for="destination">Destination:</label>

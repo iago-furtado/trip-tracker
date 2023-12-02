@@ -2,28 +2,23 @@
 var express = require('express');
 var router = express.Router();
 
-// Dashboard Page
-router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', { title: 'Dashboard' });
+router.get('/create', (req, res, next) => {
+  res.render('private/create', { title: 'Create Itinerary' });
 });
 
 // Itinerary Pages
-router.get('/itinerary/list', function(req, res, next) {
-  res.render('itinerary/list', { title: 'Itinerary List' });
-});
+router.get('/list', (req, res, next) => {
+    res.render('private/list', { title: 'Itinerary List' });
+  });
 
-router.get('/itinerary/create', function(req, res, next) {
-  res.render('itinerary/create', { title: 'Create Itinerary' });
-});
-
-router.get('/itinerary/edit/:id', function(req, res, next) {
+router.get('/edit', (req, res, next) => {
   // Implement logic to fetch itinerary details based on req.params.id
-  res.render('itinerary/edit', { title: 'Edit Itinerary', itinerary: {} });
+  res.render('private/edit', { title: 'Edit Itinerary', itinerary: {} });
 });
 
 // Weather Page
-router.get('/weather', function(req, res, next) {
-  res.render('weather', { title: 'Weather Forecast' });
+router.get('/weather', (req, res, next) => {
+  res.render('private/weather', { title: 'Weather Forecast' });
 });
 
 module.exports = router;
