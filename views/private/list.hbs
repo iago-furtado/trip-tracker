@@ -1,16 +1,52 @@
 <!-- views/private/list.hbs -->
 
 <div class="container mt-5">
-  <h2>Your Itineraries</h2>
+  <h2>{{title}}</h2>
 
-  <!-- Display a list of itineraries -->
-  <ul>
-    {{#each itineraries}}
-      <li>
-        <a href="/{{this.id}}">{{this.destination}}</a>
-        <p>Dates: {{this.dates}}</p>
-        <p>Activities: {{this.activities}}</p>
-      </li>
-    {{/each}}
-  </ul>
+  <!-- views/private/itinerary/list.hbs -->
+
+  <!-- Add Itinerary Button -->
+  <a href="/private/create" class="btn btn-success mb-3">Add Itinerary</a>
+
+  <!-- Itinerary List Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Destination</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Best Activity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each itineraries}}
+      <tr>
+        <td>{{this.title}}</td>
+        <td>{{this.destination}}</td>
+        <td>{{this.startDate}}</td>
+        <td>{{this.endDate}}</td>
+        <td>{{this.activities}}</td>
+        <td>
+          <a href="/private/edit/{{this._id}}" class="btn btn-primary btn-sm">Edit</a>
+          <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{this._id}}')">Delete</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <!-- JavaScript to handle delete confirmation -->
+  <script>
+    function confirmDelete(itineraryId) {
+      const confirmDelete = confirm('Are you sure you want to delete this itinerary?');
+      if (confirmDelete) {
+        // Perform delete action (you can use AJAX to send a request to the server)
+        window.location.href = `/private/delete/${itineraryId}`;
+      }
+    }
+  </script>
+
+
 </div>

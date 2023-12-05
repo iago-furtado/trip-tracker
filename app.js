@@ -4,6 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Load environment variables during development
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // Export libraries
 var config = require('./config/globals')
 var mongoose = require('mongoose');

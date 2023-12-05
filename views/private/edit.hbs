@@ -1,18 +1,33 @@
-<!-- views/private/itinerary/edit.hbs -->
-
 <div class="container mt-5">
-  <h2>{{tittle}}</h2>
+  <h2>{{title}}</h2>
 
-  <!-- Itinerary edit form -->
-  <form action="/{{itinerary.id}}/edit" method="POST">
-    <!-- Populate the form fields with current itinerary details -->
+  <!-- Add/Edit Itinerary Form -->
+  <form method="POST" action="/private/edit/{{itinerary._id}}">
     <div class="form-group">
-      <label for="destination">Destination:</label>
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{itinerary.title}}" required>
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination</label>
       <input type="text" class="form-control" id="destination" name="destination" value="{{itinerary.destination}}" required>
     </div>
-
-    <!-- Add more fields as needed -->
-
+    <div class="form-group">
+      <label for="startDate">Start Date</label>
+      <input type="date" class="form-control" id="startDate" name="startDate" value="{{itinerary.startDate}}" required>
+    </div>
+    <div class="form-group">
+      <label for="endDate">End Date</label>
+      <input type="date" class="form-control" id="endDate" name="endDate" value="{{itinerary.endDate}}" required>
+    </div>
+    <div class="form-group">
+      <label for="activities">Best Activity</label>
+      <input type="text" class="form-control" id="activities" name="activities" value="{{itinerary.activities}}">
+      <small class="form-text text-muted">Separate activities with commas.</small>
+    </div>
+    <div class="form-group">
+      <label for="notes">Notes</label>
+      <textarea class="form-control" id="notes" name="notes">{{itinerary.notes}}</textarea>
+    </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
   </form>
 </div>

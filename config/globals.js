@@ -1,4 +1,5 @@
 const configurations = {
-    'db': 'mongodb+srv://admin:nLL7z0KBZFegRVfA@cluster0.tnz066e.mongodb.net/TripTrackerDB'
-}
+    'db': process.env.DB_CONNECTION_STRING || 'mongodb://localhost:27017/TripTrackerDB',
+};
+
 module.exports = configurations;

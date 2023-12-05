@@ -7,4 +7,47 @@ a {
   color: #00B7FF;
 }
 
+.logo{
+  margin-left: 3%;
+  margin-right: 3%;
+}
 
+.social-logo {
+  width: 30px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  margin-left: 10px;
+}
+
+footer{
+  background-color: #E6E6FA;
+}
+
+header {
+  background-color: #E6E6FA;
+}
+
+header .navbar-brand {
+  background: url('path/to/logo.png') no-repeat center center;
+  background-size: contain;
+  height: 50px; /* Set the height of your logo */
+  width: 150px; /* Set the width of your logo */
+  display: inline-block;
+}
+
+/* Optional: Adjust the navbar styling */
+nav.navbar {
+  border-bottom: 2px solid #ddd; /* Add a border at the bottom of the navbar */
+}
+
+nav.navbar a.nav-link {
+  color: #333; /* Set the color of the navigation links */
+  margin-right: 15px; /* Add spacing between navigation links */
+}
+
+/* Optional: Hover effect on navigation links */
+nav.navbar a.nav-link:hover {
+  color: #555; /* Set the color when hovering over navigation links */
+}
+form{
+  margin-bottom: 20px;
+}
