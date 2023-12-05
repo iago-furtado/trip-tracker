@@ -3,6 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var app = express();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+const User = require('./models/user');
+const hbs = require('hbs');
+
+// Import authentication
+app.use(session({
+  secret: 'fall2023jsframeworks',
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Initialize passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Load environment variables during development
 if (process.env.NODE_ENV !== 'production') {
@@ -13,13 +33,10 @@ if (process.env.NODE_ENV !== 'production') {
 var config = require('./config/globals')
 var mongoose = require('mongoose');
 
-
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var privateRouter = require('./routes/private');
-
-var app = express();
+var usersRouter = require('./routes/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,7 +67,6 @@ db.once('open', () => {
   console.log('Connected to MongoDB Atlas!');
 });
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -66,8 +82,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
 
 
 module.exports = app;

@@ -3,8 +3,15 @@
 <div class="container mt-5">
   <h2>{{title}}</h2>
 
+  <!-- Display flash messages -->
+  {{#if messages.length}}
+    <div class="alert alert-danger" role="alert">
+      {{messages.[0]}}
+    </div>
+  {{/if}}
+
   <!-- Login form -->
-  <form action="/login" method="POST">
+  <form action="/auth/login" method="POST">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" class="form-control" id="username" name="username" required>
