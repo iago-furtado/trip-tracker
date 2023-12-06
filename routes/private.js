@@ -4,7 +4,7 @@ var router = express.Router();
 const Itinerary = require('../models/itinerary');
 
 router.get('/create', (req, res, next) => {
-    res.render('private/create', { title: 'Create Itinerary' });
+    res.render('private/create', { title: 'Create Itinerary', user: req.user });
 });
 
 router.get('/list', async (req, res) => {
@@ -13,7 +13,7 @@ router.get('/list', async (req, res) => {
         const itineraries = await Itinerary.find();
 
         // Render the list view and pass the fetched data to it
-        res.render('private/list', { title: 'Itinerary List', itineraries });
+        res.render('private/list', { title: 'Itinerary List', itineraries, user: req.user });
     } catch (error) {
         console.error('Error fetching itineraries:', error);
         res.status(500).send('Internal Server Error');
@@ -31,7 +31,7 @@ router.get('/edit/:_id', async (req, res, next) => {
         }
 
         // Render the edit itinerary page with fetched itinerary details
-        res.render('private/edit', { title: 'Edit Itinerary', itinerary });
+        res.render('private/edit', { title: 'Edit Itinerary', itinerary, user: req.user });
     } catch (error) {
         // Handle errors during fetching itinerary details for edit
         console.error('Error fetching itinerary details:', error);
@@ -41,7 +41,7 @@ router.get('/edit/:_id', async (req, res, next) => {
 
 // Weather Page
 router.get('/weather', (req, res, next) => {
-    res.render('private/weather', { title: 'Weather Forecast' });
+    res.render('private/weather', { title: 'Weather Forecast', user: req.user });
 });
 
 // POST handler for private/add >  when I press save button 
