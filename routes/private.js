@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const Itinerary = require('../models/itinerary');
+const axios = require('axios');
 
 router.get('/create', (req, res, next) => {
     res.render('private/create', { title: 'Create Itinerary', user: req.user });
@@ -39,10 +40,6 @@ router.get('/edit/:_id', async (req, res, next) => {
     }
 });
 
-// Weather Page
-router.get('/weather', (req, res, next) => {
-    res.render('private/weather', { title: 'Weather Forecast', user: req.user });
-});
 
 // POST handler for private/add >  when I press save button 
 // Route to handle form submissions for creating a new itinerary
@@ -119,5 +116,29 @@ router.get('/delete/:_id', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+// Weather Page
+router.get('/weather', async (req, res, next) => {
+    try {
+      const apiKey = '5a6ec4869e2b9d45947ebf5f3a8066fe';
+      const city = req.query.city || 'Barrie'; // Use the query parameter or a default city
+      const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`; // Use metric units for Celsius
+  
+      const response = await axios.get(apiUrl);
+      const weatherData = response.data;
+  
+      res.render('private/weather', {
+        title: 'Weather Forecast',
+        city: weatherData.name,
+        temperature: weatherData.main.temp,
+        weatherDescription: weatherData.weather[0].description,
+        humidity: weatherData.main.humidity,
+        windSpeed: weatherData.wind.speed,
+      });
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 module.exports = router;

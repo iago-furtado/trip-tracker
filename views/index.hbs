@@ -1,2 +1,27 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="text-center">
+    <div class="container">
+        <h1 class="mt-5">{{title}}</h1>
+        <p>Welcome to {{title}}, your go-to platform for travel experiences!</p>
+
+        <h2 class="mt-4">Destinations</h2>
+        <table class="table table-bordered mt-3">
+            <thead class="thead-light">
+                <tr>
+                    <th>Destination</th>
+                    <th>Best Activity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each itineraries}}
+                <tr>
+                    <td>{{this.destination}}</td>
+                    <td>{{this.activities}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <p class="mt-4">Explore diverse destinations and engage in thrilling activities to make your travel
+            unforgettable. Join us on this exciting journey!</p>
+    </div>
+</div>
