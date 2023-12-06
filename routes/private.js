@@ -134,6 +134,7 @@ router.get('/weather', async (req, res, next) => {
         weatherDescription: weatherData.weather[0].description,
         humidity: weatherData.main.humidity,
         windSpeed: weatherData.wind.speed,
+        user: req.user
       });
     } catch (error) {
       console.error('Error fetching weather data:', error);
